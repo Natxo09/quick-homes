@@ -109,9 +109,13 @@ public class TeleportManager {
     private static class TeleportTask {
         private final ServerPlayerEntity player;
         private final Home home;
-        private final Vec3d startPos;
+        private Vec3d startPos;
         private ScheduledFuture<?> future;
         private int remainingSeconds;
+        private int attemptCount = 0;
+        private long firstMovementTime = 0;
+        private static final int MAX_ATTEMPTS = 3;
+        private static final long MAX_MOVEMENT_TIME = 5000; // 5 seconds in milliseconds
         
         public TeleportTask(ServerPlayerEntity player, Home home) {
             this.player = player;
@@ -122,6 +126,11 @@ public class TeleportManager {
         public void start(int delaySeconds) {
             this.remainingSeconds = delaySeconds;
             
+            // Cancel any existing future before creating a new one
+            if (future != null && !future.isCancelled()) {
+                future.cancel(true);
+            }
+            
             future = scheduler.scheduleAtFixedRate(() -> {
                 if (!player.isAlive() || player.isRemoved()) {
                     cancelTeleport(player.getUuid(), false);
@@ -130,7 +139,7 @@ public class TeleportManager {
                 
                 Vec3d currentPos = player.getPos();
                 if (currentPos.distanceTo(startPos) > 0.5) {
-                    cancelTeleport(player.getUuid(), true);
+                    handleMovement();
                     return;
                 }
                 
@@ -190,6 +199,38 @@ public class TeleportManager {
         public void cancel() {
             if (future != null && !future.isCancelled()) {
                 future.cancel(true);
+            }
+        }
+        
+        private void handleMovement() {
+            long currentTime = System.currentTimeMillis();
+            
+            // Track first movement time
+            if (firstMovementTime == 0) {
+                firstMovementTime = currentTime;
+            }
+            
+            // Check if player has been moving for too long
+            if (currentTime - firstMovementTime > MAX_MOVEMENT_TIME) {
+                player.sendMessage(Text.translatable("quickhomes.teleport.cancelled.movement").formatted(Formatting.RED), true);
+                cancelTeleport(player.getUuid(), false);
+                return;
+            }
+            
+            attemptCount++;
+            
+            if (attemptCount >= MAX_ATTEMPTS) {
+                player.sendMessage(Text.translatable("quickhomes.teleport.cancelled.attempts", MAX_ATTEMPTS).formatted(Formatting.RED), true);
+                cancelTeleport(player.getUuid(), false);
+            } else {
+                // Show retry message
+                player.sendMessage(Text.translatable("quickhomes.teleport.retry", attemptCount + 1, MAX_ATTEMPTS).formatted(Formatting.YELLOW), true);
+                
+                // Update start position for next attempt
+                startPos = player.getPos();
+                
+                // Reset remaining seconds for the retry
+                remainingSeconds = QuickHomes.getConfig().getTeleportDelay();
             }
         }
     }

@@ -4,6 +4,9 @@
   "quickhomes.teleport.complete": "Welcome to %s!",
   "quickhomes.teleport.cancelled": "Teleport cancelled",
   "quickhomes.teleport.cancelled.reason": "Teleport cancelled: %s",
+  "quickhomes.teleport.retry": "Movement detected! Retrying... (Attempt %d/%d)",
+  "quickhomes.teleport.cancelled.attempts": "Teleportation cancelled after %d attempts!",
+  "quickhomes.teleport.cancelled.movement": "Teleportation cancelled - too much movement!",
   
   "quickhomes.home.set": "Home '%s' has been set",
   "quickhomes.home.deleted": "Home '%s' has been deleted",

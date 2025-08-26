@@ -4,6 +4,9 @@
   "quickhomes.teleport.complete": "Benvenuto a %s!",
   "quickhomes.teleport.cancelled": "Teletrasporto annullato",
   "quickhomes.teleport.cancelled.reason": "Teletrasporto annullato: %s",
+  "quickhomes.teleport.retry": "Movimento rilevato! Riprovando... (Tentativo %d/%d)",
+  "quickhomes.teleport.cancelled.attempts": "Teletrasporto annullato dopo %d tentativi!",
+  "quickhomes.teleport.cancelled.movement": "Teletrasporto annullato - troppo movimento!",
   
   "quickhomes.home.set": "La home '%s' è stata impostata",
   "quickhomes.home.deleted": "La home '%s' è stata eliminata",
