@@ -54,7 +54,7 @@ The mod creates a configuration file at `config/quickhomes.json`:
 ## 🔧 Building from Source
 
 ```bash
-git clone https://github.com/natxo-developer/quickhomes
+git clone https://github.com/Natxo09/quick-homes
 cd quickhomes
 ./gradlew build
 ```
@@ -71,8 +71,5 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## 🐛 Issues
 
-Found a bug? Please report it on our [GitHub Issues](https://github.com/natxo-developer/quickhomes/issues) page.
+Found a bug? Please report it on our [GitHub Issues](https://github.com/Natxo09/quick-homes/issues) page.
 
-## 💬 Discord
-
-Join our Discord server for support and updates: [Discord](https://discord.gg/quickhomes)

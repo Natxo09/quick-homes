@@ -9,9 +9,8 @@
 	],
 	"contact": {
 		"homepage": "https://modrinth.com/mod/quick-homes",
-		"sources": "https://github.com/natxo-developer/quickhomes",
-		"issues": "https://github.com/natxo-developer/quickhomes/issues",
-		"discord": "https://discord.gg/quickhomes"
+		"sources": "https://github.com/Natxo09/quick-homes",
+		"issues": "https://github.com/Natxo09/quick-homes/issues"
 	},
 	"license": "MIT",
 	"icon": "assets/quickhomes/icon.png",
@@ -37,7 +36,6 @@
 		"modmenu": {
 			"badges": ["server-side"],
 			"links": {
-				"modmenu.discord": "https://discord.gg/quickhomes",
 				"modmenu.modrinth": "https://modrinth.com/mod/quick-homes"
 			}
 		},
