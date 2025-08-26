@@ -1,0 +1,53 @@
+{
+	"schemaVersion": 1,
+	"id": "quickhomes",
+	"version": "${version}",
+	"name": "Quick Homes",
+	"description": "Quick and lightweight homes management mod for Minecraft servers and singleplayer.\n\nFeatures:\n• Server-side only - clients don't need the mod\n• Commands: /sethome, /home, /delhome, /homes\n• Multi-dimension support\n• Configurable teleport delay with animations\n• Multiple language support\n• Persistent storage per world",
+	"authors": [
+		"Natxo"
+	],
+	"contact": {
+		"homepage": "https://modrinth.com/mod/quick-homes",
+		"sources": "https://github.com/natxo-developer/quickhomes",
+		"issues": "https://github.com/natxo-developer/quickhomes/issues",
+		"discord": "https://discord.gg/quickhomes"
+	},
+	"license": "MIT",
+	"icon": "assets/quickhomes/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"net.natxo.quickhomes.QuickHomes"
+		],
+		"client": [
+			"net.natxo.quickhomes.QuickHomesClient"
+		]
+	},
+	"mixins": [
+		"quickhomes.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.17.2",
+		"minecraft": "~1.21.8",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"custom": {
+		"modmenu": {
+			"badges": ["server-side"],
+			"links": {
+				"modmenu.discord": "https://discord.gg/quickhomes",
+				"modmenu.modrinth": "https://modrinth.com/mod/quick-homes"
+			}
+		},
+		"fabric-api:sided": {
+			"client": false,
+			"server": true
+		},
+		"mc-publish": {
+			"modrinth": "quick-homes",
+			"curseforge": 0
+		}
+	}
+}

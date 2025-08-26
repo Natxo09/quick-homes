@@ -1,0 +1,24 @@
+{
+  "quickhomes.teleport.start.delayed": "Teletransportando para %s em %d segundos...",
+  "quickhomes.teleport.start.instant": "Teletransportando para %s...",
+  "quickhomes.teleport.complete": "Bem-vindo a %s!",
+  "quickhomes.teleport.cancelled": "Teletransporte cancelado",
+  "quickhomes.teleport.cancelled.reason": "Teletransporte cancelado: %s",
+  
+  "quickhomes.home.set": "O home '%s' foi definido",
+  "quickhomes.home.deleted": "O home '%s' foi deletado",
+  "quickhomes.home.location": "Localização: %s em %s",
+  
+  "quickhomes.list.title": "SEUS HOMES",
+  
+  "quickhomes.dimension.overworld": "Superfície",
+  "quickhomes.dimension.nether": "Nether",
+  "quickhomes.dimension.end": "O End",
+  "quickhomes.dimension.custom": "Dimensão Personalizada",
+  
+  "quickhomes.error.home.exists": "Já existe um home chamado '%s'! Use /delhome para removê-lo primeiro",
+  "quickhomes.error.home.notfound": "Home '%s' não encontrado",
+  "quickhomes.error.max.homes": "Você atingiu o número máximo de homes (%d)",
+  "quickhomes.error.no.homes": "Você não tem nenhum home definido",
+  "quickhomes.error.crossdim.disabled": "O teletransporte entre dimensões está desativado"
+}
