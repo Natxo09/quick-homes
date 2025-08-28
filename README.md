@@ -9,13 +9,14 @@ A quick and efficient homes management mod for Minecraft servers and singleplaye
 
 ## 🌟 Features
 
-- **Server-Side Only** - Clients don't need to install the mod to join your server
+- **Server-Side Compatible** - Works perfectly when installed only on the server
 - **Simple Commands** - Easy to use home management system
 - **Multi-Dimension Support** - Set homes in any dimension
 - **Teleport Animation** - Beautiful animations with configurable delay
-- **Multi-Language** - Supports EN, ES, FR, DE, IT, PT-BR
+- **Smart Language System** - Automatic language detection with server-side fallback
+- **Multi-Language Support** - EN, ES, FR, DE, IT, PT-BR
 - **Persistent Storage** - Homes are saved per world
-- **Highly Configurable** - Customize max homes, teleport delay, and more
+- **Highly Configurable** - Customize max homes, teleport delay, language, and more
 
 ## 📝 Commands
 
@@ -26,16 +27,30 @@ A quick and efficient homes management mod for Minecraft servers and singleplaye
 
 ## ⚙️ Configuration
 
-The mod creates a configuration file at `config/quickhomes.json`:
+The mod creates a configuration file at `config/quickhomes.json` with detailed comments:
 
 ```json
 {
   "maxHomes": 5,
   "teleportDelay": 3,
   "allowCrossDimension": true,
-  "showTeleportAnimation": true
+  "showTeleportAnimation": true,
+  
+  // Server-Only Mode Settings
+  "serverOnlyMode": true,  // Set to true for server-only installations
+  "serverLanguage": "en_us" // Language for server messages (en_us, es_es, fr_fr, de_de, it_it, pt_br)
 }
 ```
+
+### Language Configuration
+
+**Quick Homes** features an intelligent language system:
+
+- **Client + Server**: When installed on both sides, clients see messages in their Minecraft language
+- **Server Only**: When `serverOnlyMode` is `true`, all players see messages in the `serverLanguage`
+- **Single Player**: Always uses your client language
+
+This ensures compatibility whether the mod is installed on the client, server, or both!
 
 ## 🚀 Installation
 

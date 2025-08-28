@@ -25,6 +25,27 @@ public class QuickHomes implements ModInitializer {
 		
 		config = QuickHomesConfig.loadConfig();
 		
+		// Auto-detect if we should use server-only mode
+		// If we're on a dedicated server and serverOnlyMode is not explicitly set to false, use server text
+		boolean useServerText = config.isServerOnlyMode();
+		if (net.fabricmc.loader.api.FabricLoader.getInstance().getEnvironmentType() == net.fabricmc.api.EnvType.SERVER) {
+			// On dedicated servers, default to server-only mode unless explicitly disabled
+			if (useServerText) {
+				// Load the configured language translations
+				net.natxo.quickhomes.util.MessageUtils.loadServerTranslations(config.getServerLanguage());
+				LOGGER.info("Running on dedicated server - using server-side text in language: " + config.getServerLanguage());
+			} else {
+				LOGGER.info("Running on dedicated server - using client translations");
+			}
+		} else {
+			// On integrated server (singleplayer/LAN), always use translations
+			useServerText = false;
+			LOGGER.info("Running on integrated server - using client translations");
+		}
+		
+		// Apply server-only mode configuration to MessageUtils
+		net.natxo.quickhomes.util.MessageUtils.setForceServerSideText(useServerText);
+		
 		CommandRegistrationCallback.EVENT.register(HomeCommands::register);
 		
 		ServerLifecycleEvents.SERVER_STARTED.register(srv -> {

@@ -35,7 +35,7 @@ public class TeleportManager {
         }
         
         int delay = QuickHomes.getConfig().getTeleportDelay();
-        player.sendMessage(MessageUtils.createTeleportStartMessage(home.getName(), delay), false);
+        player.sendMessage(MessageUtils.createTeleportStartMessage(player, home.getName(), delay), false);
         
         TeleportTask task = new TeleportTask(player, home);
         pendingTeleports.put(playerUuid, task);
@@ -71,7 +71,7 @@ public class TeleportManager {
             player.addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 20, 0, false, false));
         }
         
-        player.sendMessage(MessageUtils.createTeleportCompleteMessage(home.getName()), true);
+        player.sendMessage(MessageUtils.createTeleportCompleteMessage(player, home.getName()), true);
     }
     
     private static void spawnTeleportParticles(ServerWorld world, Vec3d pos) {
@@ -101,7 +101,7 @@ public class TeleportManager {
         if (task != null) {
             task.cancel();
             if (sendMessage && task.player != null && task.player.isAlive()) {
-                task.player.sendMessage(MessageUtils.createTeleportCancelledMessage("Movement detected"), true);
+                task.player.sendMessage(MessageUtils.createTeleportCancelledMessage(task.player, "Movement detected"), true);
             }
         }
     }
@@ -212,7 +212,7 @@ public class TeleportManager {
             
             // Check if player has been moving for too long
             if (currentTime - firstMovementTime > MAX_MOVEMENT_TIME) {
-                player.sendMessage(Text.translatable("quickhomes.teleport.cancelled.movement").formatted(Formatting.RED), true);
+                player.sendMessage(MessageUtils.createErrorMessage(player, "quickhomes.teleport.cancelled.movement"), true);
                 cancelTeleport(player.getUuid(), false);
                 return;
             }
@@ -220,11 +220,11 @@ public class TeleportManager {
             attemptCount++;
             
             if (attemptCount >= MAX_ATTEMPTS) {
-                player.sendMessage(Text.translatable("quickhomes.teleport.cancelled.attempts", MAX_ATTEMPTS).formatted(Formatting.RED), true);
+                player.sendMessage(MessageUtils.createErrorMessage(player, "quickhomes.teleport.cancelled.attempts", MAX_ATTEMPTS), true);
                 cancelTeleport(player.getUuid(), false);
             } else {
                 // Show retry message
-                player.sendMessage(Text.translatable("quickhomes.teleport.retry", attemptCount + 1, MAX_ATTEMPTS).formatted(Formatting.YELLOW), true);
+                player.sendMessage(MessageUtils.getLocalizedText(player, "quickhomes.teleport.retry", attemptCount + 1, MAX_ATTEMPTS).formatted(Formatting.YELLOW), true);
                 
                 // Update start position for next attempt
                 startPos = player.getPos();

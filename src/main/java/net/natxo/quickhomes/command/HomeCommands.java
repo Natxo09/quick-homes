@@ -53,12 +53,12 @@ public class HomeCommands {
         int maxHomes = QuickHomes.getConfig().getMaxHomes();
         
         if (existingHome != null) {
-            source.sendMessage(MessageUtils.createErrorMessage("quickhomes.error.home.exists", name));
+            source.sendMessage(MessageUtils.createErrorMessage(player, "quickhomes.error.home.exists", name));
             return 0;
         }
         
         if (homeCount >= maxHomes) {
-            source.sendMessage(MessageUtils.createErrorMessage("quickhomes.error.max.homes", maxHomes));
+            source.sendMessage(MessageUtils.createErrorMessage(player, "quickhomes.error.max.homes", maxHomes));
             return 0;
         }
         
@@ -74,6 +74,7 @@ public class HomeCommands {
         
         QuickHomes.getHomeStorage().setHome(player.getUuid(), name, home);
         source.sendFeedback(() -> MessageUtils.createHomeSetMessage(
+                player,
                 name, 
                 player.getWorld().getRegistryKey().getValue().toString(),
                 player.getX(), 
@@ -90,12 +91,12 @@ public class HomeCommands {
         
         Home home = QuickHomes.getHomeStorage().getHome(player.getUuid(), name);
         if (home == null) {
-            source.sendMessage(MessageUtils.createErrorMessage("quickhomes.error.home.notfound", name));
+            source.sendMessage(MessageUtils.createErrorMessage(player, "quickhomes.error.home.notfound", name));
             return 0;
         }
         
         if (!QuickHomes.getConfig().isAllowCrossDimension() && !player.getWorld().getRegistryKey().equals(home.getDimension())) {
-            source.sendMessage(MessageUtils.createErrorMessage("quickhomes.error.crossdim.disabled"));
+            source.sendMessage(MessageUtils.createErrorMessage(player, "quickhomes.error.crossdim.disabled"));
             return 0;
         }
         
@@ -108,10 +109,10 @@ public class HomeCommands {
         ServerPlayerEntity player = source.getPlayerOrThrow();
         
         if (QuickHomes.getHomeStorage().deleteHome(player.getUuid(), name)) {
-            source.sendFeedback(() -> MessageUtils.createHomeDeleteMessage(name), false);
+            source.sendFeedback(() -> MessageUtils.createHomeDeleteMessage(player, name), false);
             return 1;
         } else {
-            source.sendMessage(MessageUtils.createErrorMessage("quickhomes.error.home.notfound", name));
+            source.sendMessage(MessageUtils.createErrorMessage(player, "quickhomes.error.home.notfound", name));
             return 0;
         }
     }
@@ -123,17 +124,18 @@ public class HomeCommands {
         Map<String, Home> homes = QuickHomes.getHomeStorage().getPlayerHomes(player.getUuid());
         
         if (homes.isEmpty()) {
-            source.sendMessage(MessageUtils.createErrorMessage("quickhomes.error.no.homes"));
+            source.sendMessage(MessageUtils.createErrorMessage(player, "quickhomes.error.no.homes"));
             return 0;
         }
         
         int maxHomes = QuickHomes.getConfig().getMaxHomes();
-        source.sendFeedback(() -> MessageUtils.createListHeader(homes.size(), maxHomes), false);
+        source.sendFeedback(() -> MessageUtils.createListHeader(player, homes.size(), maxHomes), false);
         
         for (Map.Entry<String, Home> entry : homes.entrySet()) {
             Home home = entry.getValue();
             String dimension = home.getDimension().getValue().toString();
             source.sendFeedback(() -> MessageUtils.createHomeListEntry(
+                    player,
                     entry.getKey(),
                     dimension,
                     home.getX(),

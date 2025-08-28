@@ -8,8 +8,8 @@ Quick Homes is a lightweight, server-side teleportation mod that brings the esse
 
 ## 🎯 Key Features
 
-### 🖥️ **100% Server-Side**
-No client installation required! Players can join your server with vanilla Minecraft while enjoying all the features.
+### 🖥️ **Smart Server-Side Compatibility**
+Works perfectly as a server-only mod! Players can join with vanilla Minecraft, and the mod intelligently adapts to show messages in the server's configured language. When clients have the mod, they see translations in their preferred language.
 
 ### 🏠 **Simple Home Management**
 - Set multiple homes with custom names
@@ -29,8 +29,14 @@ No client installation required! Players can join your server with vanilla Minec
 - Toggle cross-dimension teleportation
 - Beautiful teleport animations
 
-### 🌍 **Multi-Language Support**
-Available in 6 languages:
+### 🌍 **Intelligent Multi-Language System**
+
+**Smart Language Detection:**
+- **Both Sides:** Clients see messages in their Minecraft language
+- **Server Only:** Messages display in the server's configured language
+- **Single Player:** Always uses your preferred language
+
+**Supported Languages:**
 - English (en_us)
 - Español (es_es)
 - Deutsch (de_de)
@@ -55,12 +61,21 @@ Customize the mod to fit your server's needs:
 
 ```json
 {
-  "maxHomes": 5,              // Maximum homes per player
-  "teleportDelay": 3,         // Seconds before teleportation
-  "allowCrossDimension": true,// Allow teleportation between dimensions
-  "showTeleportAnimation": true // Show particles during teleport
+  "maxHomes": 5,                  // Maximum homes per player
+  "teleportDelay": 3,             // Seconds before teleportation
+  "allowCrossDimension": true,    // Allow teleportation between dimensions
+  "showTeleportAnimation": true,  // Show particles during teleport
+  
+  // Server-Only Mode Settings
+  "serverOnlyMode": true,         // Enable for server-only installations
+  "serverLanguage": "en_us"       // Server language (en_us, es_es, fr_fr, de_de, it_it, pt_br)
 }
 ```
+
+**Configuration Notes:**
+- `serverOnlyMode`: Set to `true` when only installed on the server
+- `serverLanguage`: Choose the language for all server messages
+- The config file includes helpful comments for easy setup
 
 ## 🚀 Installation
 
@@ -83,6 +98,7 @@ Customize the mod to fit your server's needs:
 - **Hub Servers** - Personal waypoint system
 - **Private SMPs** - Essential teleportation without complexity
 - **Public Servers** - Safe, controlled teleportation system
+- **International Servers** - Automatic language support for global communities
 
 ## 🔒 Safety Features
 
@@ -90,6 +106,7 @@ Customize the mod to fit your server's needs:
 - **Safe Landing** - Automatically finds safe spots to teleport
 - **Dimension Validation** - Ensures safe cross-dimension travel
 - **Permission Compatible** - Works with permission plugins (LuckPerms, etc.)
+- **Smart Retry System** - Automatic teleport retry on minor movements
 
 ## 📊 Technical Details
 
@@ -104,18 +121,6 @@ Customize the mod to fit your server's needs:
 Quick Homes is open source! Check out the code, report issues, or contribute:
 - [GitHub Repository](https://github.com/Natxo09/quick-homes)
 - [Issue Tracker](https://github.com/Natxo09/quick-homes/issues)
-
-## 📈 Why Choose Quick Homes Over Others?
-
-1. **No Client Mods Required** - Unlike many teleportation mods
-2. **Lightweight** - Minimal impact on server performance
-3. **Modern Codebase** - Built for Minecraft 1.21.8
-4. **Active Development** - Regular updates and bug fixes
-5. **Community Driven** - Open to suggestions and contributions
-
-## 🎮 Get Started Now!
-
-Download Quick Homes today and give your players the teleportation system they deserve - simple, fast, and reliable!
 
 ---
 
