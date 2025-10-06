@@ -56,8 +56,8 @@ public class TeleportManager {
         }
         
         if (QuickHomes.getConfig().isShowTeleportAnimation()) {
-            spawnTeleportParticles(player.getWorld(), player.getPos());
-            player.getWorld().playSound(null, player.getX(), player.getY(), player.getZ(),
+            spawnTeleportParticles(player.getEntityWorld(), new Vec3d(player.getX(), player.getY(), player.getZ()));
+            player.getEntityWorld().playSound(null, player.getX(), player.getY(), player.getZ(),
                     SoundEvents.ENTITY_ENDERMAN_TELEPORT, SoundCategory.PLAYERS, 1.0F, 1.0F);
         }
         
@@ -120,7 +120,7 @@ public class TeleportManager {
         public TeleportTask(ServerPlayerEntity player, Home home) {
             this.player = player;
             this.home = home;
-            this.startPos = player.getPos();
+            this.startPos = new Vec3d(player.getX(), player.getY(), player.getZ());
         }
         
         public void start(int delaySeconds) {
@@ -137,7 +137,7 @@ public class TeleportManager {
                     return;
                 }
                 
-                Vec3d currentPos = player.getPos();
+                Vec3d currentPos = new Vec3d(player.getX(), player.getY(), player.getZ());
                 if (currentPos.distanceTo(startPos) > 0.5) {
                     handleMovement();
                     return;
@@ -149,40 +149,40 @@ public class TeleportManager {
                     player.sendMessage(progressBar, true);
                     
                     if (QuickHomes.getConfig().isShowTeleportAnimation()) {
-                        ServerWorld world = player.getWorld();
-                        
+                        ServerWorld world = player.getEntityWorld();
+
                         double time = System.currentTimeMillis() / 1000.0;
                         int particleCount = 8;
-                        
+
                         for (int i = 0; i < particleCount; i++) {
                             double angle = (2 * Math.PI / particleCount) * i + (time * 2);
                             double radius = 1.2;
                             double x = player.getX() + Math.cos(angle) * radius;
                             double z = player.getZ() + Math.sin(angle) * radius;
                             double y = player.getY() + 0.1 + Math.sin(time * 3) * 0.3;
-                            
+
                             world.spawnParticles(ParticleTypes.ENCHANTED_HIT,
                                     x, y, z, 1, 0, 0.1, 0, 0);
                         }
-                        
+
                         for (int i = 0; i < 3; i++) {
                             double offsetX = (world.random.nextDouble() - 0.5) * 0.5;
                             double offsetZ = (world.random.nextDouble() - 0.5) * 0.5;
                             double offsetY = world.random.nextDouble() * 2;
-                            
+
                             world.spawnParticles(ParticleTypes.END_ROD,
                                     player.getX() + offsetX, player.getY() + offsetY, player.getZ() + offsetZ,
                                     1, 0, 0.05, 0, 0.01);
                         }
-                        
+
                         if (remainingSeconds == 1) {
                             for (int i = 0; i < 20; i++) {
                                 double angle = (2 * Math.PI / 20) * i;
                                 double x = player.getX() + Math.cos(angle) * 0.5;
                                 double z = player.getZ() + Math.sin(angle) * 0.5;
-                                
-                                world.spawnParticles(ParticleTypes.DRAGON_BREATH,
-                                        x, player.getY() + 1, z, 1, 0, 0, 0, 0.02);
+
+                                world.spawnParticles(ParticleTypes.SOUL_FIRE_FLAME,
+                                        x, player.getY() + 1, z, 1, 0.0, 0.0, 0.0, 0.02);
                             }
                         }
                     }
@@ -225,10 +225,10 @@ public class TeleportManager {
             } else {
                 // Show retry message
                 player.sendMessage(MessageUtils.getLocalizedText(player, "quickhomes.teleport.retry", attemptCount + 1, MAX_ATTEMPTS).formatted(Formatting.YELLOW), true);
-                
+
                 // Update start position for next attempt
-                startPos = player.getPos();
-                
+                startPos = new Vec3d(player.getX(), player.getY(), player.getZ());
+
                 // Reset remaining seconds for the retry
                 remainingSeconds = QuickHomes.getConfig().getTeleportDelay();
             }

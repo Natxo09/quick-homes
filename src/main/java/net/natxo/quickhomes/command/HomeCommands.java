@@ -69,16 +69,16 @@ public class HomeCommands {
                 player.getZ(),
                 player.getYaw(),
                 player.getPitch(),
-                player.getWorld().getRegistryKey()
+                player.getEntityWorld().getRegistryKey()
         );
-        
+
         QuickHomes.getHomeStorage().setHome(player.getUuid(), name, home);
         source.sendFeedback(() -> MessageUtils.createHomeSetMessage(
                 player,
-                name, 
-                player.getWorld().getRegistryKey().getValue().toString(),
-                player.getX(), 
-                player.getY(), 
+                name,
+                player.getEntityWorld().getRegistryKey().getValue().toString(),
+                player.getX(),
+                player.getY(),
                 player.getZ()
         ), false);
         
@@ -95,7 +95,7 @@ public class HomeCommands {
             return 0;
         }
         
-        if (!QuickHomes.getConfig().isAllowCrossDimension() && !player.getWorld().getRegistryKey().equals(home.getDimension())) {
+        if (!QuickHomes.getConfig().isAllowCrossDimension() && !player.getEntityWorld().getRegistryKey().equals(home.getDimension())) {
             source.sendMessage(MessageUtils.createErrorMessage(player, "quickhomes.error.crossdim.disabled"));
             return 0;
         }

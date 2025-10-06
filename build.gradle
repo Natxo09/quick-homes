@@ -67,9 +67,14 @@ jar {
 
 // Configure the dev environment player name
 loom {
+	runs {
+		client {
+			programArgs("--username", "Natxo")
+		}
+	}
+
 	runConfigs.configureEach {
 		runDir = "run"
-		programArgs("--username", "Natxo")
 	}
 }
 
