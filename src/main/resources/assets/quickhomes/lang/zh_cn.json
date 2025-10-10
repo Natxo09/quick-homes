@@ -1,0 +1,28 @@
+{
+  "quickhomes.teleport.start.delayed": "将在 %2$d 秒后传送到 %1$s...",
+  "quickhomes.teleport.start.instant": "正在传送到 %s...",
+  "quickhomes.teleport.complete": "欢迎来到 %s！",
+  "quickhomes.teleport.cancelled": "传送已取消",
+  "quickhomes.teleport.cancelled.reason": "传送已取消：%s",
+  "quickhomes.teleport.retry": "检测到移动！重试中...（第 %d/%d 次）",
+  "quickhomes.teleport.cancelled.attempts": "多次重试后传送已取消（共 %d 次）！",
+  "quickhomes.teleport.cancelled.movement": "传送已取消 - 移动过多！",
+
+  "quickhomes.home.set": "已设置家园点『%s』",
+  "quickhomes.home.deleted": "已删除家园点『%s』",
+  "quickhomes.home.location": "位置：%s（位于 %s）",
+
+  "quickhomes.list.title": "你的家园列表",
+
+  "quickhomes.dimension.overworld": "主世界",
+  "quickhomes.dimension.nether": "地狱",
+  "quickhomes.dimension.end": "末地",
+  "quickhomes.dimension.custom": "自定义维度",
+
+  "quickhomes.error.home.exists": "名为『%s』的家园已存在！请先使用 /delhome 删除",
+  "quickhomes.error.home.notfound": "未找到名为『%s』的家园",
+  "quickhomes.error.max.homes": "你已达到可设置家园的上限（%d 个）",
+  "quickhomes.error.no.homes": "你还没有设置任何家园",
+  "quickhomes.error.crossdim.disabled": "跨维度传送已被禁用"
+}
+
