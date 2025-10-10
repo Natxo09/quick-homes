@@ -14,7 +14,7 @@ A quick and efficient homes management mod for Minecraft servers and singleplaye
 - **Multi-Dimension Support** - Set homes in any dimension
 - **Teleport Animation** - Beautiful animations with configurable delay
 - **Smart Language System** - Automatic language detection with server-side fallback
-- **Multi-Language Support** - EN, ES, FR, DE, IT, PT-BR
+- **Multi-Language Support** - EN, ES, FR, DE, IT, PT-BR, ZH-CN
 - **Persistent Storage** - Homes are saved per world
 - **Highly Configurable** - Customize max homes, teleport delay, language, and more
 

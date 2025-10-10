@@ -60,7 +60,7 @@ public class QuickHomesConfig {
             writer.write("  \n");
             writer.write("  \"_comment6\": \"Server Language (used when serverOnlyMode is true)\",\n");
             writer.write("  \"_comment7\": \"Available languages: en_us (English), es_es (Spanish), fr_fr (French),\",\n");
-            writer.write("  \"_comment8\": \"de_de (German), it_it (Italian), pt_br (Portuguese Brazil)\",\n");
+            writer.write("  \"_comment8\": \"de_de (German), it_it (Italian), pt_br (Portuguese Brazil), zh_cn(Simplified Chinese)\",\n");
             writer.write("  \"serverLanguage\": \"" + serverLanguage + "\",\n");
             writer.write("  \n");
             writer.write("  \"_comment9\": \"Legacy message settings (deprecated, will be removed in future versions)\",\n");

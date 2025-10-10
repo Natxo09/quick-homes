@@ -43,6 +43,7 @@ Works perfectly as a server-only mod! Players can join with vanilla Minecraft, a
 - Français (fr_fr)
 - Italiano (it_it)
 - Português Brasileiro (pt_br)
+- 简体中文 (zh_cn)
 
 ## 📝 Commands
 
